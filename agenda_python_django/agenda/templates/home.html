@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+
+  {% if contacts %}
+     <br>
+     <br>
+    
+    <table class="table table-bordered">
+ <tr>
+    		<th>Titlu</th>
+   			 <th>Data ultimei modificari</th> 
+    		<th>Autor</th>
+        <th>Vizualizare</th>
+        <th>Editare</th>
+        <th>Sterge</th>
+        
+
+
+    		<th>
+  		</tr>
+
+    {% for ev in contacts %}
+       
+  		<tr>
+        	<th>  {{ ev.title }}</th>
+        	<th>  {{ ev.data_ultimei_modificari }}</th>
+        	<th>  {{ ev.author }}</th>
+          <th>  <a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></th>
+          <th> <a href="#"> <span class="glyphicon glyphicon-edit"></span></a></th>
+          <th> <a href="#"> <span class="glyphicon glyphicon-trash"></span></a></th>
+        </tr>
+    {% endfor %}
+    </table>
+    
+{% else %}
+    <p>no event are avaifdsfable</p>
+{% endif %}
+
+{% if contacts.has_other_pages %}
+  <ul class="pagination">
+    {% if contacts.has_previous %}
+      <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in contacts.paginator.page_range %}
+      {% if contacts.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if contacts.has_next %}
+      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}

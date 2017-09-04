@@ -1,0 +1,87 @@
+Tema Python/Django
+====
+Sa se creeze o aplicatie Agenda.
+
+O intrare din agenda este compusa din:
+- data intrarii (nu e neaparat sa fie ziua curenta, se poate crea o intrare pentru o zi din trecut sau din viitor)
+- data ultimei modificari (se modifica oricand s-a facut un edit la intrare, iar initial are valoarea crearii) (https://docs.djangoproject.com/en/1.11/topics/forms/)
+- tags (se pot cauta intrari dupa tags)
+- vizibilitate - daca intrarea e publica/privata
+- textul intrarii (suport markdown)
+- added_by (user-ul care adauga intrarea in agenda)
+
+Optional: folosire tema bootstrap
+
+Aplicatia va contine:
+
+- pagina de inregistrare cu confirmare email
+
+- pagina de login si forgot password (https://docs.djangoproject.com/en/1.11/topics/auth/default/)
+
+*Pagina de inregistrare*
+
+- utilizatorul va trebui sa introduca username (unic), email (unic), nume (required), prenume (required)
+
+- username-ul poate contine doar caractere alfanumerice (si '-')
+
+- parola se va seta *dupa* ce utilizatorul va primi email-ul de confirmare creare cont; in acel email va fi gasit un link de setare parola
+
+*Utilizatori logati*
+
+- pagina utilizatorului (url de tip /<username>), care contine:
+    - paginare pentru intrarile din agenda utilizatorului logat (https://docs.djangoproject.com/en/1.11/topics/pagination/)
+    - se afiseaza cate 5 intrari pe pagina
+    - intrarile sunt afisate initial in functie de data ultimei modificari descendent (intrarea care a fost ultima modificata va fi afisata prima).
+    - sortare dupa titlu, data crearii.
+    - buton de editare, vizualizare si stergere in dreptul fiecarei intrari (cu permisiunile corespunzatoare)
+    - un utilizator logat nu poate intra pe pagina altui utilizator
+    Urmatoarele butoane vor exista pe toate paginile
+    - buton de logout
+    - buton de adaugare a unei noi intrari in agenda
+    - buton editare profil
+    - buton de schimbare a parolei
+    - buton de acces calendar
+
+    Optional: Navbar bootstrap cu link-urile de mai sus (buton de tip "Home", adaugare intrare agenda, acces calendar, logout, editare profil, schimbare parola)
+
+- pagina de tip "Home" (/):
+    - pe pagina "Home" se afiseaza intrarile utilizatorului logat si toate celelalte publice (se afiseaza autorul in tabel)
+
+- pagina de editare profil (url de tip /<username>/edit-profile)
+
+    - in care se pot edita *doar* numele si prenumele utilizatorului logat
+- pagina adaugare intrare agenda
+
+    - date field (nu se pot introduce 2 intrari in aceeasi zi, daca exista deja o intrare pe o zi atunci trebuie editata intrarea existanta)
+    - textarea (cu support pentru Markdown https://en.wikipedia.org/wiki/Markdown ) in care sa se poata scrie (sa se ia in considerare ca utilizatorul poate sa dea Enter) Un utilizator poate sa vada si sa editeze doar intrarile pe care le-a creat. Are acces doar de vizualizare a intrarilor publice ale altui utilizator.
+
+- export to pdf
+    - pe pagina de "Vizualizare intrare" va exista un buton de "Export PDF"
+    - sa se poate exporta o intrare sau mai multe intr-un singur fisier PDF
+    - modalitate de selectare prin "checkbox" a intrarilor ce vor fi descarcate in fisierul PDF
+    - buton/link de tipul "View all" pentru a putea selecta intrari multiple (sau toate intrarile) pentru export
+
+- tags
+    - fiecare intrare sa aiba tags (required)
+    - intrarile for fi cautate dupa tags
+
+- calendar (url de tip /<username>/calendar)
+    - o vedere calendar cu luna curenta unde apare titlul la fiecare intrare in ziua cand a fost creata intrarea. Se poate folosi o librarie ca fullcalendar http://fullcalendar.io.
+    - in calendar se afiseaza *doar* intrarile user-ului curent
+
+*Utilizatori nelogati*
+- Utilizatorii nelogati care vor vedea doar pagina "Home" (cu intrarile marcare ca publice) fara optiunile de editare.
+- Vor avea buton de Login (Optional: navbar cu buton de "Home" si "Login")
+*Utilizatori logati/nelogati*
+- pagina cu username-urile tuturor user-ilor; la click pe username se vor afisa toate intrarile *publice* ale acelui utilizator
+- cautare
+    - sa se poata cauta prin toate intrarile lui (dupa tags) (pentru pagina /username).
+    - (Optional pentru pagina "Home", in care se afiseaza o lista ce contine atat intrarile private ale user-ului logat <daca exista> si toate cele publice) o cautare a intrarilor dupa userii existenti (nume, prenume) si tags.
+------------------------
+- admin
+    - list display fields (afisare field-urilor <added_by, data intrarii, data ultimei modificari, vizibilitate>)
+    - search dupa tags
+    - interfata de administrare de unde se pot vizualiza toate datele si inregistra useri noi. Accesul doar pentru admins, se recomanda folosirea django admin https://docs.djangoproject.com/en/1.11/ref/contrib/admin/
+
+
+

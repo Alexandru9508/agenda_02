@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+
+  {% if all_event %}
+    <ul>
+    {% for ev in all_event %}
+        	<h2> {{ ev.title }}</h2>
+        	<h4> {{ ev.text }}</h4>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>no event are avaifdsfable</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+body {
+    background-color: withe;
+}
+
+ul.errorlist {
+    padding-left: 0;
+}
+
+ul.errorlist > li {
+    list-style: none;
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.glyphicon-star {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.glyphicon-star.active {
+    color: #FDB230;
+}
+table{
+
+	padding-left: 80px;
+    margin: 30px;
+}
+.center-block {  
+  display: block;  
+  margin-right: auto;  
+  margin-left: auto;  
+} 
+.login-button{
+    margin-top: 5px;
+    width: 100px;
+    margin: 0 auto;
+
+}
+
+.login-register{
+    font-size: 11px;
+    text-align: center;
+}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<p> asdsdfdfasd</p>
+	 
+    {% for ev in addevent_set.all %}
+        	<h2> {{ ev.title }}</h2>
+        	<h4> {{ ev.text }}</h4>
+    {% endfor %}
+    </ul>
+ 
+
+{% endblock %}
